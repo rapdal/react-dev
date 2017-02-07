@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/app.js",
-    "build": "SET NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors"
+    "build": "webpack -p --config ./webpack.prod.config.js"
   },
   "author": "Rad Apdal",
   "license": "ISC",
