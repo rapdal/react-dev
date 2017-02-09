@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import store from '../store'
+import store from '../../store'
 
-import { Items, ItemForm } from './Items'
+import { Items, ItemForm } from '../Items'
 
 class ItemsContainer extends React.Component {  
 

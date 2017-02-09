@@ -5,7 +5,9 @@ import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
 import store from './store'
 
 import App from './components/App'
-import ItemsContainer from './components/ItemsContainer'
+
+import ItemsContainer from './components/containers/ItemsContainer'
+
 import About from './components/About'
 
 let rootElement = document.getElementById('app')
