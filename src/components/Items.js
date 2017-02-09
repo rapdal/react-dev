@@ -2,12 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 export class ItemForm extends React.Component {
+  handleClick() {
+    const node = this.refs.input
+    const text = node.value.trim()
+    this.props.add(text)
+    node.value = ""
+  }
+
   render() {
     return (
       <div>
       	<div>
-      		<input type="text" onChange={this.props.update} />
-      		<button onClick={this.props.add}>Add</button>
+      		<input type="text" ref="input" />
+      		<button onClick={(e) => this.handleClick(e)}>Add</button>
       	</div>      	
       </div>
     );

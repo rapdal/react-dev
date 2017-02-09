@@ -1,16 +1,23 @@
 import React from 'react'
 import { render } from 'react-dom'
-import App from './components/App'
-import Home from './components/Home'
-import About from './components/About'
+import { Provider } from 'react-redux'
 import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
+import store from './store'
+
+import App from './components/App'
+import ItemsContainer from './components/ItemsContainer'
+import About from './components/About'
+
+let rootElement = document.getElementById('app')
 
 render((
-	<Router history={browserHistory}>
-		<Route path="/" component={App}>
-			<IndexRoute component={Home} />			
-			<Route path="about" component={About} />
-		</Route>
-	</Router>
-), document.getElementById('app'));
+	<Provider store = {store}>
+		<Router history={browserHistory}>
+			<Route path="/" component={App}>				
+				<IndexRoute component={ItemsContainer} />			
+				<Route path="about" component={About} />
+			</Route>
+		</Router>
+	</Provider>
+), rootElement);
 	
