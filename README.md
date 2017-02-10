@@ -16,8 +16,14 @@ Deployed on Heroku at https://still-escarpment-70352.herokuapp.com/
 
 ## Installation and Development
 
+Heroku
 ```
-git:clone -a still-escarpment-70352
+heroku git:clone -a still-escarpment-70352
+```
+
+GitHub
+```
+git clone https://github.com/rapdal/react-dev.git
 ```
 
 Development
