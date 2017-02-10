@@ -5,7 +5,7 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 export default class About extends React.Component {
 	render() {
 		return (
-			<h1>About</h1>
+			<h3>About</h3>
 		);
 	}
 }

@@ -1,17 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Header from './Header'
+import HeaderContainer from '../containers/HeaderContainer'
 
-export default class App extends React.Component {
+export default class Base extends React.Component {
 	constructor(props) {
-    super(props); 
+    super(props)
   }
-
+  
   render() {
     return (
        <div>          
-          <Header data={this.props.children} />	
+          <HeaderContainer />
+          {this.props.children}
           <footer>Footer</footer>          
        </div>        
     );

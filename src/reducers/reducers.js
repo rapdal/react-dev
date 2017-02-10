@@ -1,20 +1,29 @@
 import { combineReducers } from 'redux'
-import { GET_ITEMS, ADD_ITEM } from '../actions/actions'
+import { ADD_ITEM, UPDATE_ITEM } from '../actions/actions'
 
-const initialState = ['Sample']
-
-const itemsReducer = function(state = initialState, action) {   
-   switch (action.type) {        
+const listReducer = function(state = ['Sample'], action) {   
+   switch(action.type) {        
       case ADD_ITEM:
-         var newState = state.concat([action.item]);         
-         return newState;
+         const newState = state.concat([action.item]);   
+         return newState;               
       default:
          return state;
    }
 }
 
+const menuReducer = function(state = [], action) {
+  switch(action.type) {
+    case UPDATE_ITEM:
+      const newState = action.item;
+      return newState;
+    default:
+      return state;
+  }
+}
+
 const reducers = combineReducers({
-   itemsReducer
+   listReducer,
+   menuReducer
 })
 
 export default reducers

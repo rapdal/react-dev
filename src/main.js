@@ -4,9 +4,9 @@ import { Provider } from 'react-redux'
 import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router'
 import store from './store'
 
-import App from './components/App'
+import Base from './components/layouts/Base'
 
-import ItemsContainer from './components/containers/ItemsContainer'
+import HomeContainer from './components/containers/HomeContainer'
 
 import About from './components/About'
 
@@ -15,10 +15,10 @@ let rootElement = document.getElementById('app')
 render((
 	<Provider store = {store}>
 		<Router history={browserHistory}>
-			<Route path="/" component={App}>				
-				<IndexRoute component={ItemsContainer} />			
-				<Route path="about" component={About} />
-			</Route>
+			<Route path="/" component={Base}>					
+				<IndexRoute component={HomeContainer} />			
+				<Route path="about" component={About} />	
+			</Route>	
 		</Router>
 	</Provider>
 ), rootElement);
