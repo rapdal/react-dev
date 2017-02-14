@@ -9,7 +9,7 @@ React Template Project using:
 - React Bootstrap
 - React Flux
 - Webpack
-- Webpack Dev
+- Webpack Middleware
 - Express
 
 Deployed on Heroku at https://still-escarpment-70352.herokuapp.com/

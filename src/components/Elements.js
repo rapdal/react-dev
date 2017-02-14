@@ -1,29 +1,35 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {Col, Form, FormControl, Button} from 'react-bootstrap/lib'
+import {
+  Col, Button, HelpBlock,
+  Form, FormGroup, FormControl, ControlLabel
+} from 'react-bootstrap/lib'
 
-export class SingleInputForm extends React.Component {
-  handleClick() {    
+export class SingleInputForm extends React.Component {  
+
+  handleClick(e) {    
     const node = ReactDOM.findDOMNode(this.refs.input)      
     const text = node.value
-    this.props.add(text)
+    this.props.validate(text)
     node.value = ""
   }
 
   render() {
     return (          
     	<Form inline>
-    		  <FormControl type="text" ref="input" />
-    		  <Button bsStyle="info" onClick={(e) => this.handleClick(e)}>Add</Button>
-    	</Form>           	    
+        <FormGroup controlId="formBasicText" validationState={this.props.validation}>            
+    		  <FormControl type="text" ref="input" />             		 
+    	 </FormGroup>
+       <Button bsStyle="info" onClick={(e) => this.handleClick(e)}>Add</Button>
+      </Form>           	    
     );
   }
 }
 
 class ListItem extends React.Component {
   render() {
-    return (<li>{this.props.item}</li>)
+    return (<li>{this.props.item.title}</li>)
   }
 }
 

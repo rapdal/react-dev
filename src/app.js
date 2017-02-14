@@ -1,20 +1,18 @@
-const Server = require('./server.js')
-const port = (process.env.PORT || 8080)
-const app = Server.app()
+const path = require('path');
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 
-if (process.env.NODE_ENV !== 'production') {
-  const webpack = require('webpack')
-  const webpackDevMiddleware = require('webpack-dev-middleware')
-  const webpackHotMiddleware = require('webpack-hot-middleware')
-  const config = require('../webpack.dev.config.js')
-  const compiler = webpack(config)
+const app = express();
+const indexPath = path.join(__dirname, '/../index.html');
+const publicPath = express.static(path.join(__dirname, '../public'));
 
-  app.use(webpackDevMiddleware(compiler, {
-    // noInfo: true,
-    publicPath: config.output.publicPath
-  }));
-  app.use(webpackHotMiddleware(compiler))  
-}
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.listen(port)
-console.log(`Listening at http://localhost:${port}`)
+require('../server/routes')(app);
+app.use('/public', publicPath);
+app.get('/', (_, res) => res.sendFile(indexPath));    
+
+module.exports = app;

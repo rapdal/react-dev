@@ -13,8 +13,8 @@ class HeaderContainer extends React.Component {
 		this.handleSelect = this.handleSelect.bind(this)
 	}
 
-	dispatch(type, item) {
-		store.dispatch({type, item});	
+	dispatch(type, data) {
+		store.dispatch({type, data});	
 	}
 
 	handleSelect(selectedKey) {
@@ -24,7 +24,7 @@ class HeaderContainer extends React.Component {
   render() {  	
 	  return (
 			<div>
-				<h1>Header</h1>
+				<h1>To Do List</h1>
 				<Nav bsStyle="pills" activeKey={this.props.item > 0 ? this.props.item : 1} onSelect={this.handleSelect}>					
 			    	<IndexLinkContainer to="/">
 			    		<NavItem eventKey={1}>Home</NavItem>

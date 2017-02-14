@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import axios from 'axios'
 import store from '../../store'
 
 import {Col} from 'react-bootstrap/lib'
@@ -17,14 +18,46 @@ const style = {
 
 class HomeContainer extends React.Component {  
 
-	dispatch(type, item) {
-		store.dispatch({type, item});	
+	constructor(props) {
+		super(props)		
+	}
+
+	dispatch(type, data) {
+		store.dispatch({type, data});			
+	}
+
+	componentDidMount() {
+		this.dispatch('GET_ITEMS_REQUEST');		
+		axios.get('/api/todos').then(response => {			
+			this.dispatch('GET_ITEMS_SUCCESS', response.data);
+    });
+	}
+
+	validate(item) {
+		if (item.length > 0) {
+			this.add(item)	
+			this.dispatch('VALIDATE_ITEM_DEFAULT')		
+		} 
+		else {
+			this.dispatch('VALIDATE_ITEM_FAILURE')
+		}
+	}
+
+	add(item) {
+		if(item && item.length) {		
+			axios.post('/api/todos', {
+				title: item
+			})
+			.then(response => {		
+				this.dispatch('ADD_ITEM', response.data);
+			}); 
+		}  
 	}
 
 	render() {			
 		return (			
 			<Col sm={12} style={style.container}>
-				<SingleInputForm add={(item) => this.dispatch('ADD_ITEM', item)} />
+				<SingleInputForm validation={this.props.validation} validate={(item) => this.validate(item)} />
 				<div style={style.list}>
 					<List items={this.props.items} />		
 				</div>		
@@ -33,9 +66,10 @@ class HomeContainer extends React.Component {
 	}
 }
 
-const mapStateToProps = function(store) {		
+const mapStateToProps = function(store) {			
   return {
-    items: store.listReducer
+    items: store.listReducer,
+    validation: store.validateReducer
   };
 };
 
