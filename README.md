@@ -2,17 +2,18 @@
 
 React Template Project using:
 
-- ES6
+- ES6 with Babel
 - Node
 - React
 - React Router
 - React Bootstrap
 - React Flux
 - Webpack
-- Webpack Middleware
+- Webpack Hot
 - Express
+- Sequelize
 
-Deployed on Heroku at https://still-escarpment-70352.herokuapp.com/
+Deployed on Heroku with psql at https://still-escarpment-70352.herokuapp.com/
 
 ## Installation and Development
 

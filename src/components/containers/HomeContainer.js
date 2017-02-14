@@ -5,7 +5,7 @@ import axios from 'axios'
 import store from '../../store'
 
 import {Col} from 'react-bootstrap/lib'
-import { SingleInputForm, List } from '../Elements'
+import { SingleInputForm, AccordionList } from '../Elements'
 
 const style = {
   container: {
@@ -34,17 +34,19 @@ class HomeContainer extends React.Component {
 	}
 
 	validate(item) {
-		if (item.length > 0) {
-			this.add(item)	
+		if (item.length > 0) {			
 			this.dispatch('VALIDATE_ITEM_DEFAULT')		
+			return true;
 		} 
 		else {
 			this.dispatch('VALIDATE_ITEM_FAILURE')
+			return false;
 		}
 	}
 
-	add(item) {
-		if(item && item.length) {		
+	addList(item) {
+		let isValid = this.validate(item);
+		if(isValid) {		
 			axios.post('/api/todos', {
 				title: item
 			})
@@ -54,12 +56,16 @@ class HomeContainer extends React.Component {
 		}  
 	}
 
+	addTask(item) {
+		let isValid = this.validate(item);
+	}
+
 	render() {			
 		return (			
 			<Col sm={12} style={style.container}>
-				<SingleInputForm validation={this.props.validation} validate={(item) => this.validate(item)} />
+				<SingleInputForm validation={this.props.validation} addList={(item) => this.validate(item)} />
 				<div style={style.list}>
-					<List items={this.props.items} />		
+					<AccordionList items={this.props.items} />		
 				</div>		
 			</Col>
 		);
@@ -69,7 +75,7 @@ class HomeContainer extends React.Component {
 const mapStateToProps = function(store) {			
   return {
     items: store.listReducer,
-    validation: store.validateReducer
+    validation: store.validateReducer    
   };
 };
 

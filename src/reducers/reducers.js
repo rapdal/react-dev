@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { 
   GET_ITEMS_REQUEST, GET_ITEMS_SUCCESS, 
   VALIDATE_ITEM_FAILURE, VALIDATE_ITEM_DEFAULT,
+  EXPAND_COLLAPSIBLE,
   ADD_ITEM, UPDATE_ITEM 
 } from '../actions/actions'
 
@@ -11,6 +12,7 @@ const listReducer = function(state = [], action) {
       let currentState = action.data;
       return currentState;
     case ADD_ITEM:      
+      action.data.items = [];
       let addNewState = state.concat([action.data]);   
       return addNewState;               
     default:
@@ -37,10 +39,20 @@ const validateReducer = function(state = null, action) {
   }
 }
 
+const collapsibleReducer = function(state = false, action) {
+  switch(action.type) {
+    case EXPAND_COLLAPSIBLE:
+      return !state;
+    default:
+      return false;
+  }
+}
+
 const reducers = combineReducers({
    listReducer,
    menuReducer,
-   validateReducer
+   validateReducer,
+   collapsibleReducer,
 })
 
 export default reducers

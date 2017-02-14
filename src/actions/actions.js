@@ -5,6 +5,8 @@ export const GET_ITEMS_FAILURE = 'GET_ITEMS_FAILURE'
 export const VALIDATE_ITEM_DEFAULT = 'VALIDATE_ITEM_DEFAULT'
 export const VALIDATE_ITEM_FAILURE = 'VALIDATE_ITEM_FAILURE'
 
+export const EXPAND_COLLAPSIBLE = 'EXPAND_COLLAPSIBLE'
+
 export const ADD_ITEM = 'ADD_ITEM'
 export const UPDATE_ITEM = 'UPDATE_ITEM'
 
@@ -32,6 +34,13 @@ export function validateItemsDefault() {
 	return {
 		type: VALIDATE_ITEM_DEFAULT,
 		validation
+	}
+}
+
+export function expandCollapsible() {
+	return {
+		type: EXPAND_COLLAPSIBLE,
+		expanded
 	}
 }
 
