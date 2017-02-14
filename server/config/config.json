@@ -7,12 +7,7 @@
     "port": 5432,
     "dialect": "postgres"
   },  
-  "production": {
-    "username": "aawpeimxqdavcm",
-    "password": "dc55b3ad74741bac7297bc1d1c5a0f275235d586889f9182052c68d9984d54a0",
-    "database": "d2sr4suj5r5614",
-    "host": "ec2-23-21-111-81.compute-1.amazonaws.com",
-    "port": 5432,
-    "dialect": "postgres"
+  "production": {    
+    "use_env_variable": "DATABASE_URL"
   }
 }
