@@ -20,7 +20,7 @@ export class SingleInputForm extends React.Component {
   handleClick(e) {    
     const node = ReactDOM.findDOMNode(this.refs.input)      
     const text = node.value
-    this.props.validate(text)
+    this.props.addTodo(text)
     node.value = ""
   }
   render() {
