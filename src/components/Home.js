@@ -27,40 +27,16 @@ class Home extends React.Component {
 		this.props.addTodoRequest(title);
 	}
 
-	/*
-	addList(item) {
-		let isValid = this.validate(item);
-		if(isValid) {		
-			axios.post('/api/todos', {
-				title: item
-			})
-			.then(response => {		
-				this.dispatch('ADD_ITEM', response.data);
-			}); 
-		}  
+	addTask(formData) {	
+		this.props.addTaskRequest(formData);
 	}
-	*/
-
-	/*
-	addTask(item) {
-		let isValid = this.validate(item);
-		if(isValid) {
-			axios.post(`/api/todos/${item.id}/items`, {
-				title: item.content
-			})
-			.then(response => {		
-				this.dispatch('ADD_ITEM', response.data);
-			}); 
-		}
-	}
-	*/
 
 	render() {			
 		return (			
 			<Col sm={12} style={style.container}>
-				<SingleInputForm validation={this.props.todo_input} addTodo={(title) => this.addTodo(title)} />
+				<SingleInputForm validation={this.props.todos.valid} addTodo={(title) => this.addTodo(title)} />
 				<div style={style.list}>					
-					<AccordionList items={this.props.todos.items} />
+					<AccordionList items={this.props.todos.todo} addTask={(formData) => this.addTask(formData)}/>
 				</div>	
 			</Col>
 		);
