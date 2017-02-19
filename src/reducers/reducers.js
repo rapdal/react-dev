@@ -1,46 +1,58 @@
+/*
+ * REDUCERS
+ * receive paylod from ACTIONS
+ * mutate STATE then pass to CONTAINER as PROPS
+ *
+ */
+
 import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
+import update from 'immutability-helper'
+
 import { 
-  GET_ITEMS_REQUEST, GET_ITEMS_SUCCESS, 
-  VALIDATE_ITEM_FAILURE, VALIDATE_ITEM_DEFAULT,
-  ADD_ITEM, UPDATE_ITEM 
+  GET_TODOS_REQUEST, GET_TODOS_SUCCESS, GET_TODOS_FAILURE,  
+  ADD_TODO_REQUEST, ADD_TODO_SUCCESS, ADD_TODO_FAILURE,
+  ADD_TASK_REQUEST, ADD_TASK_SUCCESS, ADD_TASK_FAILURE,
 } from '../actions/actions'
 
-const listReducer = function(state = [], action) {   
+
+const INITIAL_STATE = {
+  todos: { todo:[], valid:null, error:null, loading:false }  
+}
+
+const todoReducer = function(state = INITIAL_STATE, action) {   
   switch(action.type) { 
-    case GET_ITEMS_SUCCESS: 
-      let currentState = action.data;
-      return currentState;
-    case ADD_ITEM:      
-      let addNewState = state.concat([action.data]);   
-      return addNewState;               
+    case GET_TODOS_REQUEST:      
+      return {...state, todos:{todo:[], error:null, loading:true}};
+    case GET_TODOS_SUCCESS:         
+      return {...state, todos:{todo:action.payload, error:null, loading:true}};      
+    case GET_TODOS_FAILURE: 
+      return {...state, todos:{todo:[], error:'Error', loading:false}};  
+
+    case ADD_TODO_REQUEST:            
+      return {...state, todos:{...state.todos, error:null, loading:true, valid:null}};    
+    case ADD_TODO_FAILURE:
+      return {...state, todos:{...state.todos, error:null, loading:false, valid:'error'}};
+    case ADD_TODO_SUCCESS: 
+      action.payload.todo = [];  
+      return {...state, todos:{todo:update(state.todos.todo, {$push:[action.payload]}), error:null, loading:false}};      
+
+    case ADD_TASK_REQUEST:
+      return {...state, todos:{...state.todos, error:null, loading:true}};    
+    case ADD_TASK_FAILURE:
+      return {...state, todos:{...state.todos, error:"Error", loading:false}};
+    case ADD_TASK_SUCCESS:      
+      return {...state, todos:{...state.todos, error:null, loading:false}};
+
     default:
       return state;
   }
 }
 
-const menuReducer = function(state = [], action) {
-  switch(action.type) {
-    case UPDATE_ITEM:
-      const newState = action.data;
-      return newState;
-    default:
-      return state;
-  }
-}
-
-const validateReducer = function(state = null, action) {
-  switch(action.type) {
-    case VALIDATE_ITEM_FAILURE:
-      return 'error'
-    default:
-      return null;
-  }
-}
 
 const reducers = combineReducers({
-   listReducer,
-   menuReducer,
-   validateReducer
+   todoReducer,
+   form: formReducer
 })
 
 export default reducers
