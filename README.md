@@ -12,6 +12,8 @@ React Template Project using:
 - Webpack Hot
 - Express
 - Sequelize
+- Redux Form
+- Normalizr
 
 Deployed on Heroku with psql at https://still-escarpment-70352.herokuapp.com/
 
