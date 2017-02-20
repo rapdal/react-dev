@@ -65,7 +65,7 @@ class AccordionItem extends Component {
     const { item, index, handleSubmit } = this.props
 
     let list = null;
-    if (item.items.length) {
+    if (item.items && item.items.length) {
       list = <ul>{item.items.map((subitem, i) => (<ListItem key={i} item={subitem} index={i+1} />))}</ul> 
     }
     else {
