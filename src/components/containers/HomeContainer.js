@@ -16,7 +16,7 @@ import {
 import  Home from '../Home'
 
 
-const mapStateToProps = (state) => {	   
+const mapStateToProps = (state) => {  
   return {
     todos: state.todoReducer.todos
   }
@@ -54,11 +54,10 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     addTaskRequest: (formData) => {     
-      const response = dispatch(addTaskRequest(formData))
-      response.then((payload) => { 
-        console.log(payload)       
-        if(payload.status == 201) {         
-          dispatch(addTaskSuccess(payload.data))            
+      const response = dispatch(addTaskRequest(formData))      
+      response.then((res) => {           
+        if(res.payload.status == 201) {                            
+          dispatch(addTaskSuccess(res.payload.data))            
         }
         else {
           dispatch(addTaskFailure())

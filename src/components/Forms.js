@@ -52,7 +52,7 @@ const renderField = (field) => {
 class ToolbarForm extends Component {
   handleInitialize() {
     const initData = {
-      'id': this.props.item.id, 
+      'id': this.props.id, 
     }
     this.props.initialize(initData);
   }  
@@ -60,7 +60,7 @@ class ToolbarForm extends Component {
     this.handleInitialize();    
   } 
   render() {    
-    const  { item, handleSubmit } = this.props;
+    const  { id, handleSubmit } = this.props;
     return (
       <div>
         <Button type="submit" bsSize="sm" className="pull-right" style={style.button}><Glyphicon glyph="trash" /></Button>    

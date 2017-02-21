@@ -17,46 +17,7 @@ export const ADD_TODO_FAILURE = 'ADD_TODO_FAILURE'
 
 export const ADD_TASK_REQUEST = 'ADD_TASK_REQUEST'
 export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS'
-export const ADD_TASK_FAILURE = 'ADD_TASK_FAILURE'
-
-
-// const response = [
-// 	{
-// 		id: 1,
-// 		title: 'title 1',
-// 		items: [
-// 			{
-// 				id: 1,
-// 				content: 'content 1',
-// 				todoId: 1,
-// 			},
-// 			{
-// 				id: 2,
-// 				content: 'content 1',
-// 				todoId: 1,
-// 			},
-// 		]
-// 	},
-// 	{
-// 		id: 2,
-// 		title: 'title 2',
-// 		items: [
-// 			{
-// 				id: 3,
-// 				content: 'content 3',
-// 				todoId: 2,
-// 			}
-// 		]
-// 	}
-// ];
-
-// const itemSchema = new schema.Entity('items')
-// const itemArraySchema = new schema.Array(itemSchema)
-
-// const todoSchema = new schema.Entity('todos', {items:itemArraySchema})
-// const todoArraySchema = new schema.Array(todoSchema)
-
-// console.log(normalize(response, todoArraySchema))    
+export const ADD_TASK_FAILURE = 'ADD_TASK_FAILURE'  
 
 
 export function getTodosRequest(){	
@@ -122,7 +83,7 @@ export function addTaskRequest(formData) {
 	}
 }
 
-export function addTaskSuccess(item) {
+export function addTaskSuccess(item) {	  
 	return {
 		type: ADD_TASK_SUCCESS,
 		payload: item		
