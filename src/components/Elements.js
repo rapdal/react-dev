@@ -86,7 +86,7 @@ class AccordionItem extends Component {
 
 export class AccordionList extends Component { 
   handleSubmit = (formData) => {         
-    this.props.addTask(formData)
+    this.props.addTask(formData)    
   }
 
   getItems = (key) => {    

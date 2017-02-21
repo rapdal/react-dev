@@ -47,12 +47,12 @@ const todoReducer = function(state = INITIAL_STATE, action) {
     case ADD_TODO_FAILURE:
       return {...state, todos:{...state.todos, error:null, loading:false, valid:'error'}};
     case ADD_TODO_SUCCESS: 
-      const todoId = action.payload.id
-      const todoObj = action.payload
+      const newTodo = {} 
+      newTodo[action.payload.id] = action.payload
       return {
         ...state, 
         todos: {
-          todo: update(state.todos.todo, {$merge:{todoId:todoObj}}),
+          todo: update(state.todos.todo, {$merge:newTodo}),
           item: state.todos.item,
           error: null, loading: false
         }
@@ -62,14 +62,14 @@ const todoReducer = function(state = INITIAL_STATE, action) {
       return {...state, todos:{...state.todos, error:null, loading:true}};    
     case ADD_TASK_FAILURE:
       return {...state, todos:{...state.todos, error:"Error", loading:false}};
-    case ADD_TASK_SUCCESS:          
-      const itemId = action.payload.id
-      const itemObj = action.payload
+    case ADD_TASK_SUCCESS: 
+      const newItem = {}
+      newItem[action.payload.id] = action.payload
       return {
         ...state, 
         todos: {
           todo: state.todos.todo,
-          item: update(state.todos.item, {$merge:{itemId:itemObj}}),
+          item: update(state.todos.item, {$merge:newItem}),
           error: null, loading: false
         }
       };  

@@ -6,6 +6,7 @@
  */
 
 import { connect } from 'react-redux'
+import { reset } from 'redux-form'
 import store from '../../store'
 
 import { 
@@ -16,7 +17,7 @@ import {
 import  Home from '../Home'
 
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {    
   return {
     todos: state.todoReducer.todos
   }
@@ -57,10 +58,11 @@ const mapDispatchToProps = (dispatch) => {
       const response = dispatch(addTaskRequest(formData))      
       response.then((res) => {           
         if(res.payload.status == 201) {                            
-          dispatch(addTaskSuccess(res.payload.data))            
+          dispatch(addTaskSuccess(res.payload.data))
+          dispatch(reset(`toolbar_${res.payload.data.todoId}`))            
         }
         else {
-          dispatch(addTaskFailure())
+          dispatch(addTaskFailure())          
         }
       });      
     }

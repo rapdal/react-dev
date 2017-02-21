@@ -58,7 +58,7 @@ class ToolbarForm extends Component {
   }  
   componentDidMount() {
     this.handleInitialize();    
-  } 
+  }   
   render() {    
     const  { id, handleSubmit } = this.props;
     return (
