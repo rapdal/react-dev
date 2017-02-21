@@ -20,8 +20,47 @@ export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS'
 export const ADD_TASK_FAILURE = 'ADD_TASK_FAILURE'
 
 
-export function getTodosRequest(){
-	const request = axios.get('/api/todos');
+// const response = [
+// 	{
+// 		id: 1,
+// 		title: 'title 1',
+// 		items: [
+// 			{
+// 				id: 1,
+// 				content: 'content 1',
+// 				todoId: 1,
+// 			},
+// 			{
+// 				id: 2,
+// 				content: 'content 1',
+// 				todoId: 1,
+// 			},
+// 		]
+// 	},
+// 	{
+// 		id: 2,
+// 		title: 'title 2',
+// 		items: [
+// 			{
+// 				id: 3,
+// 				content: 'content 3',
+// 				todoId: 2,
+// 			}
+// 		]
+// 	}
+// ];
+
+// const itemSchema = new schema.Entity('items')
+// const itemArraySchema = new schema.Array(itemSchema)
+
+// const todoSchema = new schema.Entity('todos', {items:itemArraySchema})
+// const todoArraySchema = new schema.Array(todoSchema)
+
+// console.log(normalize(response, todoArraySchema))    
+
+
+export function getTodosRequest(){	
+	const request = axios.get('/api/todos');	
 	return {
 		type: GET_TODOS_REQUEST,	
 		payload: request

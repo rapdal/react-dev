@@ -7,6 +7,7 @@
 
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
+import { schema, normalize } from 'normalizr'
 import update from 'immutability-helper'
 
 import { 
@@ -24,8 +25,19 @@ const todoReducer = function(state = INITIAL_STATE, action) {
   switch(action.type) { 
     case GET_TODOS_REQUEST:      
       return {...state, todos:{todo:[], error:null, loading:true}};
-    case GET_TODOS_SUCCESS:         
-      return {...state, todos:{todo:action.payload, error:null, loading:true}};      
+    case GET_TODOS_SUCCESS:  
+      const itemSchema = new schema.Entity('items')
+      const itemArraySchema = new schema.Array(itemSchema)
+      const todoSchema = new schema.Entity('todos', {items:itemArraySchema})
+      const todoArraySchema = new schema.Array(todoSchema)
+      console.log(normalize(action.payload, todoArraySchema))  
+      return {
+        ...state, 
+        todos:{
+          todo:action.payload, 
+          error:null, loading:true
+        }
+      };      
     case GET_TODOS_FAILURE: 
       return {...state, todos:{todo:[], error:'Error', loading:false}};  
 
@@ -41,7 +53,8 @@ const todoReducer = function(state = INITIAL_STATE, action) {
       return {...state, todos:{...state.todos, error:null, loading:true}};    
     case ADD_TASK_FAILURE:
       return {...state, todos:{...state.todos, error:"Error", loading:false}};
-    case ADD_TASK_SUCCESS:      
+    case ADD_TASK_SUCCESS:    
+
       return {...state, todos:{...state.todos, error:null, loading:false}};
 
     default:
