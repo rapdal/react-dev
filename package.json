@@ -22,6 +22,7 @@
     "immutability-helper": "^2.1.1",
     "jsx": "^0.9.89",
     "morgan": "^1.8.0",
+    "mysql": "^2.13.0",
     "normalizr": "^3.2.1",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",

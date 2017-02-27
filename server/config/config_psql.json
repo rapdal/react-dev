@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "root",
+    "username": "postgres",
     "password": "password",
     "database": "dev",
     "host": "127.0.0.1",
-    "port": 3306,
-    "dialect": "mysql"
+    "port": 5432,
+    "dialect": "postgres"
   },  
   "production": {    
     "use_env_variable": "DATABASE_URL"
