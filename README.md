@@ -15,14 +15,11 @@ React Template Project using:
 - Redux Form
 - Normalizr
 
-Deployed on Heroku with psql at https://still-escarpment-70352.herokuapp.com/
+Deployed on Heroku with PostgreSQL at https://still-escarpment-70352.herokuapp.com/
+
+Deployed on Google App Engine with CloudSQL at https://node-dev-160000.appspot-preview.com/
 
 ## Installation and Development
-
-Heroku
-```
-heroku git:clone -a still-escarpment-70352
-```
 
 GitHub
 ```
