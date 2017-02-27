@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "dev",
+    "host": "35.184.80.136",
+    "port": 3306,
+    "dialect": "mysql"
+  },  
+  "production": {    
+    "use_env_variable": "DATABASE_URL"
+  }
+}
