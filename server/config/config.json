@@ -1,0 +1,19 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "dev",
+    "host": "localhost",
+    "port": 3306,
+    "dialect": "mysql"
+  },  
+  "production": {    
+    "username": "root",
+    "password": "password",
+    "database": "dev",    
+    "dialect": "mysql",
+    "dialectOptions": {
+      "socketPath": "/cloudsql/node-dev-160000:us-central1:production"      
+    }
+  }
+}
