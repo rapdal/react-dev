@@ -14,10 +14,11 @@ React Template Project using:
 - Sequelize
 - Redux Form
 - Normalizr
+- Immutability Helper
 
 Deployed on Heroku with PostgreSQL at https://still-escarpment-70352.herokuapp.com/
 
-Deployed on Google App Engine with CloudSQL at https://node-dev-160000.appspot-preview.com/
+Deployed on Google App Engine with CloudSQL at https://node-dev-160000.appspot.com/
 
 ## Installation and Development
 
